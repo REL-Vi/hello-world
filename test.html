@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>库存列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+        .bar .searchbar {
+            margin: 0;
+            background: rgba(0, 0, 0, 0);
+        }
+
+        .list-block {
+            margin: 0;
+        }
+
+        .list-block ul:before {
+            content: none;
+        }
+
+        .bar-shop a {
+            font-size: 1rem;
+        }
+
+        .bar-header-secondary ~ .pull-to-refresh-content,
+        .bar-footer-secondary ~ .pull-to-refresh-content {
+            top: 4.4rem;
+        }
+
+        body.with-panel-left-reveal .panel-overlay {
+            margin-left: 8rem;
+        }
+
+        body.with-panel-left-reveal .page {
+            -webkit-transform: translate3d(8rem, 0, 0);
+            transform: translate3d(8rem, 0, 0);
+        }
+
+        .panel {
+            width: 8rem;
+            border-right: 1px solid #e5e5e5;
+            background: #fff;
+            color: #333;
+        }
+
+        .cells.cells-category .cell.active .cell-hd:before {
+            content: " ";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 0.2rem;
+            margin-top: -.5rem;
+            height: 1rem;
+            background: #0C61AD;
+        }
+
+        .cells.cells-category .cell.active {
+            font-size: 1rem;
+            color: #0C61AD;
+        }
+
+        .swiper-slide {
+            line-height: 2.2rem;
+            height: 2.2rem;
+            color: #6aa9dc;
+            text-align: center;
+        }
+
+        .swiper-slide.active {
+            color: #DC5353;
+            border-bottom: 2px solid #DC5353;
+            z-index: 100;
+        }
+
+        .button-next i {
+            font-size: .6rem;
+        }
+
+        .bar-tip {
+            font-size: .7rem;
+        }
+
+        .bar-tip {
+            padding: 0;
+        }
+
+        .swiper-slide {
+            display: inline-block;
+        }
+
+        .bar-tip.row .col {
+            height: 2.2rem;
+            line-height: 2.2rem;
+        }
+
+        .bar-tip a.active {
+            color: #0894ec;
+            border-bottom: 2px solid #0894ec;
+            z-index: 100;
+        }
+
+        .gocart {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            line-height: 2rem;
+            position: fixed;
+            bottom: 3.5rem;
+            right: .5rem;
+            background-color: rgba(243,241,241,0.5);
+            border: 1px solid #CCC;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            font-size: 1rem;
+            text-align: center;
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body class="ui-pagecontainer ui-mobile-viewport ui-overlay-a" id="ui-page-top">
+<div class="page" id="goodschoose_page">
+
+    <header class="bar bar-nav bar-primary row bar-shop" >
+
+        <a class="iconfont open-panel" data-panel='#panel-right-demo'>&#xe619;</a>
+        <div class="searchbar col">
+            <div class="<!-- search-input -->" id="searc_box">
+                <label class="icon icon-search"></label>
+                <input type="search" id='searc' name="keyword" placeholder='输入关键字...' />
+                <input type="hidden" id='stockroom' name="stockroom" value="" />
+
+            </div>
+        </div>
+        <a class="btn btn-mini" id="back" style="top:0rem;">返回</a>
+    </header>
+
+
+    <div class="content infinite-scroll" data-distance="100" data-ptr-distance="55">
+        <div class="list-block">
+            <ul class="list-container">
+            </ul>
+        </div>
+        <!-- preloader -->
+    </div>
+</div>
+<div class="panel-overlay"></div>
+<!-- Left Panel with Reveal effect -->
+<div class="panel panel-left panel-reveal" id='panel-right-demo'>
+    <div class="bar bar-nav row">
+        <h5>分类列表</h5>
+    </div>
+    <div class="content cells cells-noborder cells-category" id="goods_category">
+        <a class="cell cell-access active ajax-btn" _href="">
+                <span class="cell-hd">
+               </span>
+            <span class="cell-bd cell-primary">
+                显示所有
+               </span>
+        </a>
+
+        {volist	name="cats" id="vo"}
+        <a class="cell cell-access ajax-btn" _href="">
+            <span class="cell-hd">{$vo.name}</span>
+        </a>
+        {/volist}
+    </div>
+</div>
+
+<div class="page" id="searc_page">
+    <form _action="{:url('inList')}" id="searc_box">
+        <header class="bar bar-nav bar-primary row bar-shop">
+            <a class="icon icon-left go-back" href="#goodschoose_page"></a>
+            <div class="searchbar col">
+                <!-- <a class="searchbar-cancel">取消</a> -->
+                <div class="search-input">
+                    <label class="icon icon-search"></label>
+                    <input type="search" id='searc' name="keyword" placeholder='输入关键字...' />
+
+                </div>
+            </div>
+            <a class="iconfont open-panel" data-panel='#panel-right-demo'>&#xe619;</a>
+        </header>
+    </form>
+    <div class="content">
+    </div>
+</div>
+<div class="popup popup-info">
+    <div class="content">
+    </div>
+</div>
+</body>
+
+</html>
